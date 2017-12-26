@@ -1,0 +1,105 @@
+<div *ngIf="( card != null && url != null ) ;else noItems" >
+<div class="back_img_conatainer" style="background-image: url(url)" >
+<div class="transparent" style="height:30px;"></div>
+  <div class="container transparent center-align" style="width:355px">
+
+    <!-- Card Panel -->
+    <div class="card-panel z-depth-5 transparent" >
+      <div class="container transparent" style="width: 120px">
+        <div class="row">
+          <div class="col s12 m12" >
+              <img src="{{card.profile_image}}" alt="" 
+              class="materialboxed responsive-img z-depth-5 circle" materialize="materialbox" >
+          </div>
+        </div><!-- Row -->
+      </div>
+
+      <div><!-- container image-->
+        <div class="container center-align transparent">
+          <div class="caption z-depth-4">
+            <h5 class="">{{card.user_name}}</h5>
+            <h6 class="z-depth-2">{{card.description}}</h6>
+          </div><br>
+
+          <!-- Card Buttons -->
+          <div class="row">
+            <a class="btn-floating btn-large z-depth-5 waves-effect waves-light hoverable " style="background-color: rgba(75, 204, 35, 0.6);;"><i class="fa fa-phone fa-5x" aria-hidden="true"></i></a>
+            <a href="{{card.facebook_url}}" target="_blank" class="btn-floating btn-large z-depth-5 waves-effect waves-light hoverable" style="background-color: rgba(75, 204, 35, 0.5);"><i class="fa fa-facebook fa-5x" aria-hidden="true"></i></a>
+            <a class="btn-floating btn-large z-depth-5 waves-effect waves-light hoverable " style="background-color: rgba(75, 204, 35, 0.4);"><i class="fa fa-map-marker fa-5x" aria-hidden="true"></i></a>
+            <a target="_blank" href="{{card.whatsapp}}" class="btn-floating btn-large z-depth-5 waves-effect waves-light hoverable " style="background-color: rgba(75, 204, 35, 0.3);"><i class="fa fa-whatsapp fa-5x" aria-hidden="true"></i></a>
+          </div>
+          
+          <div class="row">
+              <a data-target="modal2" class="btn-floating btn-large z-depth-5 waves-effect waves-light hoverable modal-trigger" style="background-color: rgba(75, 204, 35, 0.3);"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+              <a class="btn-floating btn-large z-depth-5  waves-effect waves-light hoverable " style="background-color: rgba(75, 204, 35, 0.4);"><i class="fa fa-calendar fa-5x" aria-hidden="true"></i></a>
+              <a href="mailto:{{card.email}}" class="btn-floating btn-large z-depth-5 waves-effect waves-light hoverable " style="background-color: rgba(75, 204, 35, 0.5);" ><i class="fa fa-envelope fa-5x" aria-hidden="true"></i></a>
+              <a data-target="modal1" class="btn-floating btn-large z-depth-5 waves-effect waves-light hoverable modal-trigger"  style="background-color: rgba(75, 204, 35, 0.6);"><i class="fa fa-picture-o fa-5x" aria-hidden="true"></i></a>
+          </div> 
+            
+          <!-- Video Modal -->
+          <div id="modal2" class="modal modal-fixed-footer" materialize="modal">
+            <div class="modal-content">
+              <h5>Video</h5>                     
+              <div class="video-container" style="width:100%;height: auto;">
+                  <iframe width="853" height="480" [src]="transform(card.video)" frameborder="0" allowfullscreen></iframe>
+              </div>                     
+            </div>                        
+            <div class="modal-footer">
+              <a class="modal-action modal-close waves-effect waves-green btn-flat "><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+            </div>
+            </div>
+
+          <!-- Image Galery Modal -->
+          <div id="modal1" class="modal modal-fixed-footer" materialize="modal" >                               
+            <div class="modal-content">
+              <h5>Galery</h5>                     
+              <div class="carousel" materialize="carousel" style="height:80%" >
+                  <div *ngFor="let image of card.images, let i = index" class="carousel-item"><img class="materialboxed" materialize="materialbox" [src]="transform(image)"></div>
+              </div>
+            </div>                        
+            <div class="modal-footer">
+              <a class="modal-action modal-close waves-effect waves-green btn-flat "><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <!-- Info -->
+          <a id="manu" class="waves-effect waves-light btn btn-floating btn-small " style="background-color: rgba(75, 204, 35, 0.6);" onclick="$('.tap-target').tapTarget('open')">
+              <i class="fa fa-info fa-3x" aria-hidden="true"></i>
+          </a>
+          
+          <!-- Info Terget -->
+          <div class="tap-target transparent teal accent-3"  data-activates="manu">
+            <div class="tap-target-content white-text  " >
+                <h5>{{card.user_name}}</h5>
+                <p class="white-text">{{card.about}}</p>
+            </div>
+          </div>
+
+      </div>
+
+      <!-- Logo -->
+      <div class="container center-align">
+              <img src="../../../favicon.ico" alt="" style="width:130px">
+      </div>                                  
+    </div>  
+
+  </div><!-- container -->
+</div>
+</div>
+</div>
+  <ng-template #noItems>
+      
+      <div class="preloader-wrapper big active center">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          </div>
+  </ng-template>
+
+
